@@ -20,7 +20,7 @@ export class AppController {
   @ApiBody({ type: PredictRequestDto })
   getPrediction(@Body() dto: PredictRequestDto): TimeSeriesItemDto[] {
     try {
-      return this.appService
+      const result = this.appService
         .getPrediction(
           dto.data.map((i) => new TimeSeriesItem(i.timestamp, i.value)),
           dto.params.window,
@@ -28,6 +28,8 @@ export class AppController {
           dto.params.adjustmentFactor,
         )
         .map((i) => new TimeSeriesItemDto(i.timestamp, i.value));
+
+      return dto.data.concat(result);
     } catch (error) {
       console.error(error);
       throw new InternalServerErrorException();

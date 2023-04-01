@@ -47,13 +47,13 @@ describe('AppController', () => {
 
     const mockParams = new ParamsDto(5, 5);
 
-    const expected = [
+    const expected = mockData.concat([
       new TimeSeriesItem(new Date('2018-11-05T00:00:00.000Z'), 473),
       new TimeSeriesItem(new Date('2018-11-12T00:00:00.000Z'), 509),
       new TimeSeriesItem(new Date('2018-11-19T00:00:00.000Z'), 545),
       new TimeSeriesItem(new Date('2018-11-26T00:00:00.000Z'), 581),
       new TimeSeriesItem(new Date('2018-12-03T00:00:00.000Z'), 617),
-    ];
+    ]);
 
     it('should return an array of time series items', () => {
       expect(
