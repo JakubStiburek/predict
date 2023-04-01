@@ -1,7 +1,7 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsInt, IsOptional, Max, Min } from 'class-validator';
 
-export class PropertiesDto {
+export class ParamsDto {
   @ApiProperty({ description: 'Moving average window size' })
   @IsInt()
   @Min(1)

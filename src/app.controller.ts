@@ -23,9 +23,9 @@ export class AppController {
       return this.appService
         .getPrediction(
           dto.data.map((i) => new TimeSeriesItem(i.timestamp, i.value)),
-          dto.properties.window,
-          dto.properties.forecast,
-          dto.properties.adjustmentFactor,
+          dto.params.window,
+          dto.params.forecast,
+          dto.params.adjustmentFactor,
         )
         .map((i) => new TimeSeriesItemDto(i.timestamp, i.value));
     } catch (error) {

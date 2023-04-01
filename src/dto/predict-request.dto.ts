@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { TimeSeriesItemDto } from './time-series-item.dto';
-import { PropertiesDto } from './properties.dto';
+import { ParamsDto } from './params.dto';
 import { ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -15,15 +15,15 @@ export class PredictRequestDto {
   readonly data: TimeSeriesItemDto[];
 
   @ApiProperty({
-    type: PropertiesDto,
-    description: 'Prediction model properties',
+    type: ParamsDto,
+    description: 'Prediction model parameters',
   })
   @ValidateNested()
-  @Type(() => PropertiesDto)
-  readonly properties: PropertiesDto;
+  @Type(() => ParamsDto)
+  readonly params: ParamsDto;
 
-  constructor(data: TimeSeriesItemDto[], properties: PropertiesDto) {
+  constructor(data: TimeSeriesItemDto[], params: ParamsDto) {
     this.data = data;
-    this.properties = properties;
+    this.params = params;
   }
 }

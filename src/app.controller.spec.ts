@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PredictRequestDto } from './dto/predict-request.dto';
 import { TimeSeriesItem } from './domain/time-series-item';
-import { PropertiesDto } from './dto/properties.dto';
+import { ParamsDto } from './dto/params.dto';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -45,7 +45,7 @@ describe('AppController', () => {
       },
     ].map((i) => new TimeSeriesItem(new Date(i.timestamp), i.value));
 
-    const mockProperties = new PropertiesDto(5, 5);
+    const mockParams = new ParamsDto(5, 5);
 
     const expected = [
       new TimeSeriesItem(new Date('2018-11-05T00:00:00.000Z'), 473),
@@ -58,24 +58,24 @@ describe('AppController', () => {
     it('should return an array of time series items', () => {
       expect(
         appController.getPrediction(
-          new PredictRequestDto(mockData, mockProperties),
+          new PredictRequestDto(mockData, mockParams),
         ),
       ).toEqual(expected);
     });
 
     it('should default to 5 for forecast if not provided', () => {
-      const mockPropertiesNoForecast = new PropertiesDto(5);
+      const mockParamsNoForecast = new ParamsDto(5);
 
       expect(
         appController.getPrediction(
-          new PredictRequestDto(mockData, mockPropertiesNoForecast),
+          new PredictRequestDto(mockData, mockParamsNoForecast),
         ),
       ).toEqual(expected);
     });
 
     it('should throw an error if data is not provided', () => {
       expect(() => {
-        appController.getPrediction(new PredictRequestDto([], mockProperties));
+        appController.getPrediction(new PredictRequestDto([], mockParams));
       }).toThrow();
     });
   });

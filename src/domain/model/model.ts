@@ -28,9 +28,6 @@ export class Model {
     const lastAvg = movingAvg[movingAvg.length - 1];
     const slope = (lastAvg - movingAvg[movingAvg.length - 2]) / window;
 
-    console.log(slope);
-    console.log(slope * adjustmentFactor);
-
     return Array.from(
       { length: forecast },
       (_, i) => lastAvg + (i + 1) * slope * adjustmentFactor,
